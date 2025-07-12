@@ -1,5 +1,7 @@
 
 import { type ColumnDef, useReactTable, getCoreRowModel, flexRender } from "@tanstack/react-table";
+import { Buttons } from "./Buttons";
+import { Financial } from "./Financial";
 
 const filledData = [
   {
@@ -145,6 +147,15 @@ const columns: ColumnDef<typeof data[0]>[] = [
     header: "Est. Value",
     accessorKey: "value",
   },
+  {
+    header: "----------",
+    accessorKey: "empty",
+    cell: ({ getValue }) => {
+      const value = getValue() as string;
+      if (!value) return "";
+
+    }
+  }
 ];
 
 export default function SpreadsheetView() {
@@ -155,28 +166,29 @@ export default function SpreadsheetView() {
   });
 
   return (
-    <div className="font-sans">
-      
-      <div className="flex justify-between items-center mt-2 mb-2">
-        <h2 className="text-lg font-semibold">Q3 Financial Overview</h2>
-        <div className="space-x-2">
-          <button className="bg-gray-100 px-3 py-1 rounded text-sm shadow-sm hover:bg-gray-200" onClick={() => console.log('Import clicked')}>Import</button>
-          <button className="bg-gray-100 px-3 py-1 rounded text-sm shadow-sm hover:bg-gray-200" onClick={() => console.log('Export clicked')}>Export</button>
-          <button className="bg-green-600 text-white px-3 py-1 rounded text-sm hover:bg-green-700" onClick={() => console.log('New Action clicked')}>New Action</button>
-        </div>
+    <div >
+      <div>
+        <Buttons />
+        <Financial />
       </div>
-<div className="flex justify-between items-center mt-2 mb-2">
-        <div>
-          hejfks
-        </div>
-      </div>
+
       <div className="border  overflow-auto shadow-md">
-        <table className="min-w-full text-sm text-gray-800">
+        <table className="min-w-full text-sm ">
           <thead className="bg-gray-50 text-left border-b">
             {table.getHeaderGroups().map(headerGroup => (
               <tr key={headerGroup.id}>
                 {headerGroup.headers.map(header => (
-                  <th key={header.id} className="px-4 py-3 font-medium whitespace-nowrap">
+                  <th
+                    key={header.id}
+                    className={`
+    px-3 py-2 border-l font-medium whitespace-nowrap
+    border-white
+    ${header.column.id === "empty" ? "text-white" : ""}
+    ${["priority", "due"].includes(header.column.id) ? "bg-purple-100" : ""}
+    ${["assigned"].includes(header.column.id) ? "bg-[#E8F0E9]" : ""}
+    ${["value"].includes(header.column.id) ? "bg-[#FFE9E0]" : ""}
+  `}
+                  >
                     {flexRender(header.column.columnDef.header, header.getContext())}
                   </th>
                 ))}
@@ -185,9 +197,9 @@ export default function SpreadsheetView() {
           </thead>
           <tbody>
             {table.getRowModel().rows.map(row => (
-              <tr key={row.id} className="border-t hover:bg-gray-50">
+              <tr key={row.id} className="border-t font-thin text-xs  hover:bg-gray-50">
                 {row.getVisibleCells().map(cell => (
-                  <td key={cell.id} className="px-4 py-2 whitespace-nowrap">
+                  <td key={cell.id} className="px-5 py-2 text-black border-l whitespace-nowrap">
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </td>
                 ))}
