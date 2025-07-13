@@ -49,7 +49,7 @@ export const Financial = () => {
             </button>
             <button onClick={() => {
                 handleClick("Add column");
-            }} className='flex items-center justify-center bg-gray-200 border-l border-white text-3xl font-thin px-12 '>
+            }} className='flex items-center justify-center bg-gray-200 border-l border-white text-3xl font-thin px-11 '>
                 +
             </button>
         </div>
