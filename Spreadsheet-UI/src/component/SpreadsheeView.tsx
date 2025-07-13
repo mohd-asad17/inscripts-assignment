@@ -171,9 +171,9 @@ export default function SpreadsheetView() {
                   <th
                     key={header.id}
                     className={`
-                      px-3 py-2 border-l font-semibold whitespace-nowrap text-[#666666]
+                      px-4 py-2 border-l font-semibold whitespace-nowrap text-[#666666]
                       border-white
-                      ${header.column.id === "empty" ? "text-white border-l-[2px] border-r-[2px] border-gray-300 border-dashed bg-white px-12" : ""}
+                      ${header.column.id === "empty" ? "text-white border-l-[2px] border-r-[2px] border-gray-200 border-dashed bg-white px-14" : ""}
                       ${["priority", "due"].includes(header.column.id) ? "bg-purple-100" : ""}
                       ${["assigned"].includes(header.column.id) ? "bg-[#E8F0E9]" : ""}
                       ${["value"].includes(header.column.id) ? "bg-[#FFE9E0]" : ""}

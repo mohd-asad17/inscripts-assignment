@@ -8,7 +8,7 @@ export const Financial = () => {
     async function handleClick(label: string) {
         console.log(`Clicked : ${label}`);
     }
-    return <div className='flex justify-between'>
+    return <div className='flex justify-between mr-5'>
         <div className='flex ml-14 pr-[450px] items-center  bg-gray-200'>
             <div className='flex border items-center justify-center bg-gray-100 rounded-md p-1 ml-2'>
                 <img src={Fin} alt="" />
@@ -49,7 +49,7 @@ export const Financial = () => {
             </button>
             <button onClick={() => {
                 handleClick("Add column");
-            }} className='flex items-center justify-center bg-gray-200 border-l border-white text-3xl font-thin px-11 mr-5'>
+            }} className='flex items-center justify-center bg-gray-200 border-l border-white text-3xl font-thin px-12 '>
                 +
             </button>
         </div>
